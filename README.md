@@ -71,7 +71,7 @@ dotnet test
 
 ## Usage
 
-The demo application reads JSON data from input.json and validates it against the schema defined in schema.json. The validation results are printed to the console.
+The demo application reads JSON data from input.json and validates it against the schema defined in schema.json. The validation results are written to output.json.
 
 ### Example
 
@@ -108,6 +108,7 @@ Sample input.json:
   }
 ]
 ```
+After running the demo application, the validation will be written to output.json in the data folder.
 
 ## Contributing
 

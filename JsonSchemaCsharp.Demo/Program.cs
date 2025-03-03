@@ -43,12 +43,15 @@ namespace JsonSchemaCsharp.Demo
 
                 // Validate each input in the list
                 var validator = new Validator(schema);
+                var validationResults = new List<ValidationResult>();
+
                 for (int i = 0; i < inputs.Count; i++)
                 {
                     Console.WriteLine($"Validating input {i + 1}:");
                     var input = inputs[i];
 
                     var result = validator.Validate(input);
+                    validationResults.Add(result);
 
                     // Output the result
                     Console.WriteLine($"Validation Result: {(result.IsValid ? "Valid" : "Invalid")}");
@@ -59,13 +62,14 @@ namespace JsonSchemaCsharp.Demo
                             Console.WriteLine($"{error.ErrorType}: {error.Message}");
                         }
                     }
-
-                    // Example: Serialize the result to JSON
-                    string jsonResult = JsonConvert.SerializeObject(result, Formatting.Indented);
-                    Console.WriteLine("Validation Result (JSON):");
-                    Console.WriteLine(jsonResult);
-                    Console.WriteLine();
                 }
+
+                // Serialize the validation results to JSON and write to output.json
+                string outputFilePath = Path.Combine(dataFolder, "output.json");
+                string jsonOutput = JsonConvert.SerializeObject(validationResults, Formatting.Indented);
+                File.WriteAllText(outputFilePath, jsonOutput);
+
+                Console.WriteLine($"Validation results written to {outputFilePath}");
             }
             catch (Exception ex)
             {
