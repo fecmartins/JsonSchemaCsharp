@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Xunit;
-using JsonSchemaCsharp.Core;
+using JsonSchemaCsharp.Library;
 
 public class ValidatorTests
 {

@@ -1,12 +1,9 @@
 ﻿namespace JsonSchemaCsharp.Library;
 
 public class Validator
-
-    //Create a validator class that takes the schema and input, and performs the validation.
-
 {
     private readonly Schema _schema;
-    
+
     public Validator(Schema schema)
     {
         _schema = schema;
@@ -18,13 +15,13 @@ public class Validator
 
         foreach (var field in _schema.Fields)
         {
-            if (field.Value.Mandatory && (!input.ContainsKey(field.Key) || input[field.Key] == null)
+            if (field.Value.Mandatory && (!input.ContainsKey(field.Key) || input[field.Key] == null))
             {
                 result.IsValid = false;
                 result.ErrorMessages.Add(new ErrorMessage
                 {
                     ErrorType = "MandatoryError",
-                    ErrorMessage = $"Field {field.Key} is mandatory.",
+                    Message = $"Field {field.Key} is mandatory.",
                     Field = field.Key
                 });
             }
@@ -35,7 +32,7 @@ public class Validator
                 result.ErrorMessages.Add(new ErrorMessage
                 {
                     ErrorType = "LengthError",
-                    ErrorMessage = $"Field {field.Key} exceeds maximum length of {field.Value.Length}.",
+                    Message = $"Field {field.Key} exceeds maximum length of {field.Value.Length}.",
                     Field = field.Key
                 });
             }

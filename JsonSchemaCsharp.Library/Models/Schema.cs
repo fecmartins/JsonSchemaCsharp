@@ -1,8 +1,8 @@
-﻿namespace JsonSchemaCsharp;
+﻿namespace JsonSchemaCsharp.Library;
 // Create classes to represent the schema and input data.
 public class Schema
 {
-    public Dictionary<string, FieldValidationRules> Fields { get; set; }
+    public Dictionary<string, FieldValidationRules> Fields { get; set; } = new Dictionary<string, FieldValidationRules>();
 }
 
 public class FieldValidationRules
